@@ -19,16 +19,16 @@ def get_filters():
     # TO DO: get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
     while True:
         city = input('Enter the city(chicago/new york city/washington): ')
-        
+
         if city.lower() == 'chicago' or city.lower() == 'new york city' or city.lower() == 'washington':
             break
         else:
             print('Please enter city from following only : chicago,new york city,washington')
-    
+
     # TO DO: get user input for month (all, january, february, ... , june)
     while True:
         month = input('Enter the month between january and june: ')
-        
+
         if month.lower() == 'january' or month.lower() == 'february' or month.lower() == 'march' or month.lower() == 'april' or month.lower() == 'may' or month.lower() == 'june':
             break
         else:
@@ -37,7 +37,7 @@ def get_filters():
     # TO DO: get user input for day of week (all, monday, tuesday, ... sunday)
     while True:
         day = input('Enter the day of week: ')
-        
+
         if day.lower() == 'monday' or day.lower() == 'tuesday' or day.lower() == 'wednesday' or day.lower() == 'thursday' or day.lower() == 'friday' or day.lower() == 'saturday' or day.lower() == 'sunday':
             break
         else:
@@ -62,16 +62,16 @@ def load_data(city, month, day):
 
     df['Start Time'] = pd.to_datetime(df['Start Time'])
 
-    df['month'] = df['Start Time'].dt.month
-    df['day_of_week'] = df['Start Time'].dt.weekday_name
+    df['month'] = df['Start Time'].dt.month                 # Get month from the Start Time dataframe
+    df['day_of_week'] = df['Start Time'].dt.weekday_name    # Get day of week from the Start Time dataframe
 
     if month != 'all':
         months = ['january', 'february', 'march', 'april', 'may', 'june']
-        month = months.index(month) + 1
+        month = months.index(month) + 1                    # Get numerical value of the months
         df = df[df['month'] == month]
 
     if day != 'all':
-        df = df[df['day_of_week'] == day.title()]
+        df = df[df['day_of_week'] == day.title()]           # Get day of week values
 
     return df
 
@@ -152,7 +152,7 @@ def user_stats(df):
     start_time = time.time()
 
     # TO DO: Display counts of user types
-    
+
         user_types_counts = df['User Type'].value_counts()
         print('Counts of User Types: ',user_types_counts)
 
@@ -192,13 +192,13 @@ def display_data(df):
                 break
         else:
             break
-        
+
 
 def main():
     while True:
         city, month, day = get_filters()
         df = load_data(city, month, day)
-        
+
         time_stats(df)
         station_stats(df)
         trip_duration_stats(df)
