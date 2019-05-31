@@ -10,10 +10,10 @@ BikeShare Data Comparison
 In this project, we will use data provided by **Motivate**, a bike share system provider for many major cities in the United States, to uncover bike share usage patterns.
 
 ## Files used
-###Python Files:
+### Python Files:
 * bikeshare.py
 
-###Data Sets:
+### Data Sets:
 * chicago.csv
 * washington.csv
 * new_york_city.csv
