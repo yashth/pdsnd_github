@@ -19,8 +19,8 @@ def get_filters():
     # TO DO: get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
     while True:
         city = input('Enter the city(chicago/new york city/washington): ')
-
-        if city.lower() == 'chicago' or city.lower() == 'new york city' or city.lower() == 'washington':
+        city = city.lower()
+        if city == 'chicago' or city == 'new york city' or city == 'washington':
             break
         else:
             print('Please enter city from following only : chicago,new york city,washington')
@@ -28,8 +28,8 @@ def get_filters():
     # TO DO: get user input for month (all, january, february, ... , june)
     while True:
         month = input('Enter the month between january and june: ')
-
-        if month.lower() == 'january' or month.lower() == 'february' or month.lower() == 'march' or month.lower() == 'april' or month.lower() == 'may' or month.lower() == 'june':
+        month = month.lower()
+        if month == 'january' or month == 'february' or month == 'march' or month == 'april' or month == 'may' or month == 'june':
             break
         else:
             print('Please enter month between january and june')
@@ -37,8 +37,8 @@ def get_filters():
     # TO DO: get user input for day of week (all, monday, tuesday, ... sunday)
     while True:
         day = input('Enter the day of week: ')
-
-        if day.lower() == 'monday' or day.lower() == 'tuesday' or day.lower() == 'wednesday' or day.lower() == 'thursday' or day.lower() == 'friday' or day.lower() == 'saturday' or day.lower() == 'sunday':
+        day = day.lower()
+        if day == 'monday' or day == 'tuesday' or day == 'wednesday' or day == 'thursday' or day == 'friday' or day == 'saturday' or day == 'sunday':
             break
         else:
             print('Please enter the day of week')
@@ -152,14 +152,17 @@ def user_stats(df):
     start_time = time.time()
 
     # TO DO: Display counts of user types
-
+    if 'User Type' in df.columns:
         user_types_counts = df['User Type'].value_counts()
         print('Counts of User Types: ',user_types_counts)
-
+    else:
+        print('There is no User Type specified')
     # TO DO: Display counts of gender
+    if 'Gender' in df.columns:
         gender_counts = df['Gender'].value_counts()
         print('Counts of Gender: ',gender_counts)
-
+    else:
+        print('There is no Gender specified')
     # TO DO: Display earliest, most recent, and most common year of birth
     if 'Birth Year' in df.columns:
         earliest_year_birth = df['Birth Year'].min()
